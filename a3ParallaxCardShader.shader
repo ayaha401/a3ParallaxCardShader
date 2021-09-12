@@ -79,8 +79,6 @@
             {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
-
-                //=====================================================
                 float3 viewDir : TEXCOORD1;
                 float3 normal : NORMAL;
             };

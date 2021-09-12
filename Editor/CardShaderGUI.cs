@@ -93,6 +93,30 @@ public class CardShaderGUI : ShaderGUI
 
         // base.OnGUI (materialEditor, Prop);
 
+        GUILayout.Label("Information", EditorStyles.boldLabel);
+        using (new EditorGUILayout.VerticalScope("box"))
+        {
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                GUILayout.Label("Version");
+                GUILayout.Label("Version 1.0.0");
+            }
+
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                GUILayout.Label("How to use (Japanese)");
+                if(GUILayout.Button("How to use (Japanese)"))
+                {
+                    System.Diagnostics.Process.Start("");
+                }
+            }
+        }
+        
+        
+        // ================================================================================================
+        GUILayout.Box("", GUILayout.Height(2), GUILayout.ExpandWidth(true));
+        // ================================================================================================
+
         GUILayout.Label("Parallax", EditorStyles.boldLabel);
         using (new EditorGUILayout.VerticalScope("box"))
         {
@@ -102,7 +126,6 @@ public class CardShaderGUI : ShaderGUI
                 ParallaxScale.floatValue = EditorGUILayout.Slider(ParallaxScale.floatValue, ParallaxScale.rangeLimits.x, ParallaxScale.rangeLimits.y);
                 GUILayout.Space(64.0f);
             }
-            // materialEditor.ShaderProperty(ParallaxScale, new GUIContent("ParallaxScale"));
         }
 
         // ================================================================================================
@@ -118,8 +141,6 @@ public class CardShaderGUI : ShaderGUI
                 StackColor.colorValue = EditorGUILayout.ColorField(StackColor.colorValue);
                 GUILayout.Space(64.0f);
             }
-            
-            // materialEditor.ShaderProperty(StackColor, new GUIContent("StackColor"));
         }
 
         // ================================================================================================
@@ -129,39 +150,35 @@ public class CardShaderGUI : ShaderGUI
         GUILayout.Label("Texture", EditorStyles.boldLabel);
         using (new EditorGUILayout.VerticalScope("box"))
         {
-                GUILayout.Label("Layer0");
-                using (new EditorGUILayout.VerticalScope("box"))
+            GUILayout.Label("Layer0");
+            using (new EditorGUILayout.VerticalScope("box"))
+            {
+                GUILayout.Space(2.0f);
+                using (new EditorGUILayout.HorizontalScope())
                 {
-                    GUILayout.Space(2.0f);
-                    using (new EditorGUILayout.HorizontalScope())
+                    var options = new []{GUILayout.Width (64), GUILayout.Height (64)};
+                    using (new EditorGUILayout.VerticalScope())
                     {
-                        var options = new []{GUILayout.Width (64), GUILayout.Height (64)};
-                        using (new EditorGUILayout.VerticalScope())
+                        using (new EditorGUILayout.HorizontalScope())
                         {
-                            using (new EditorGUILayout.HorizontalScope())
-                            {
-                                // GUILayout.Space(8.0f);
-                                GUILayout.Label("Layer0 MainTexture");
-                            }
-                            
-                            using (new EditorGUILayout.HorizontalScope())
-                            {
-                                // GUILayout.Space(8.0f);
-                                GUILayout.Label("Height");
-                                Layer0Height.floatValue = EditorGUILayout.Slider(Layer0Height.floatValue, Layer0Height.rangeLimits.x, Layer0Height.rangeLimits.y);
-                            }
-                            
-                            using (new EditorGUILayout.HorizontalScope())
-                            {
-                                // GUILayout.Space(8.0f);
-                                GUILayout.Label("Color");
-                                Layer0StackColor.colorValue = EditorGUILayout.ColorField(Layer0StackColor.colorValue);
-                            }
-                            
+                            GUILayout.Label("Layer0 MainTexture");
                         }
-                        Layer0.textureValue = EditorGUILayout.ObjectField(Layer0.textureValue, typeof(Texture), false, options) as Texture;
+                        
+                        using (new EditorGUILayout.HorizontalScope())
+                        {
+                            GUILayout.Label("Height");
+                            Layer0Height.floatValue = EditorGUILayout.Slider(Layer0Height.floatValue, Layer0Height.rangeLimits.x, Layer0Height.rangeLimits.y);
+                        }
+                        
+                        using (new EditorGUILayout.HorizontalScope())
+                        {
+                            GUILayout.Label("Color");
+                            Layer0StackColor.colorValue = EditorGUILayout.ColorField(Layer0StackColor.colorValue);
+                        }
                     }
+                    Layer0.textureValue = EditorGUILayout.ObjectField(Layer0.textureValue, typeof(Texture), false, options) as Texture;
                 }
+            }
         }
 
         LayerTextureLayout(materialEditor, UseLayer1, Layer1, Layer1Height, Layer1StackColor, "Layer1");
@@ -171,20 +188,28 @@ public class CardShaderGUI : ShaderGUI
         LayerTextureLayout(materialEditor, UseLayer3, Layer3, Layer3Height, Layer3StackColor, "Layer3");
 
         LayerTextureLayout(materialEditor, UseLayer4, Layer4, Layer4Height, Layer4StackColor, "Layer4");
-        
+
         using (new EditorGUILayout.VerticalScope("box"))
         {
             GUILayout.Label("BackTexture");
-            using (new EditorGUILayout.VerticalScope())
+            using (new EditorGUILayout.VerticalScope("box"))
             {
                 GUILayout.Space(2.0f);
                 using (new EditorGUILayout.HorizontalScope())
                 {
                     var options = new []{GUILayout.Width (64), GUILayout.Height (64)};
-                    using (new EditorGUILayout.HorizontalScope())
+                    using (new EditorGUILayout.VerticalScope())
                     {
-                        GUILayout.Label("Color");
-                        BackTexStackColor.colorValue = EditorGUILayout.ColorField(BackTexStackColor.colorValue);
+                        using (new EditorGUILayout.HorizontalScope())
+                        {
+                            GUILayout.Label("BackTexture");
+                        }
+                        
+                        using (new EditorGUILayout.HorizontalScope())
+                        {
+                            GUILayout.Label("Color");
+                            BackTexStackColor.colorValue = EditorGUILayout.ColorField(BackTexStackColor.colorValue);
+                        }
                     }
                     BackTex.textureValue = EditorGUILayout.ObjectField(BackTex.textureValue, typeof(Texture), false, options) as Texture;
                 }
@@ -198,17 +223,28 @@ public class CardShaderGUI : ShaderGUI
         GUILayout.Label("Dissolve", EditorStyles.boldLabel);
         using (new EditorGUILayout.VerticalScope("box"))
         {
-            GUILayout.Space(2.0f);
+            using (new EditorGUILayout.VerticalScope("box"))
+            {
+                GUILayout.Space(2.0f);
                 using (new EditorGUILayout.HorizontalScope())
                 {
                     var options = new []{GUILayout.Width (64), GUILayout.Height (64)};
-                    using (new EditorGUILayout.HorizontalScope())
+                    using (new EditorGUILayout.VerticalScope())
                     {
-                        GUILayout.Label("DissolveAmount");
-                        DissolveAmount.floatValue = EditorGUILayout.Slider(DissolveAmount.floatValue, DissolveAmount.rangeLimits.x, DissolveAmount.rangeLimits.y);
+                        using (new EditorGUILayout.HorizontalScope())
+                        {
+                            GUILayout.Label("DissolveTexture");
+                        }
+
+                        using (new EditorGUILayout.HorizontalScope())
+                        {
+                            GUILayout.Label("DissolveAmount");
+                            DissolveAmount.floatValue = EditorGUILayout.Slider(DissolveAmount.floatValue, DissolveAmount.rangeLimits.x, DissolveAmount.rangeLimits.y);
+                        }
                     }
                     DissolveTex.textureValue = EditorGUILayout.ObjectField(DissolveTex.textureValue, typeof(Texture), false, options) as Texture;
                 }
+            }
         }
 
         // ================================================================================================
@@ -246,7 +282,6 @@ public class CardShaderGUI : ShaderGUI
                 }
             }
         }
-    
     }
 
     void LayerTextureLayout(MaterialEditor ed,            MaterialProperty UseLayerToggle, MaterialProperty LayerTex, 
