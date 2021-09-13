@@ -46,7 +46,7 @@
     {
         Tags 
         { 
-            "RenderType"="Transparent"
+            "RenderType" = "Opaque"
         }
         Cull Off
         LOD 100
