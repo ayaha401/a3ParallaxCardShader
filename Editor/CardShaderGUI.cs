@@ -107,7 +107,7 @@ public class CardShaderGUI : ShaderGUI
                 GUILayout.Label("How to use (Japanese)");
                 if(GUILayout.Button("How to use (Japanese)"))
                 {
-                    System.Diagnostics.Process.Start("");
+                    System.Diagnostics.Process.Start("https://github.com/ayaha401/a3ParallaxCardShader/wiki/%E5%90%84%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E8%AA%AC%E6%98%8E");
                 }
             }
         }

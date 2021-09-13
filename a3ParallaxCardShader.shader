@@ -38,8 +38,8 @@
 
         [Toggle(_USE_EDGE)] _UseEdge("UseEdge", Float) = 0
         [HDR]_EdgeColor("EdgeColor", color) = (1.0, 1.0, 1.0,1.0)
-        _EdgeRange("EdgeRange", Range(0.0, 0.5)) = 0.1
-        _EdgeBlur("EdgeBlur", Range(0.001, 0.3)) = 0.1
+        _EdgeRange("EdgeRange", Range(0.0, 0.5)) = 0.03
+        _EdgeBlur("EdgeBlur", Range(0.001, 0.3)) = 0.001
 
     }
     SubShader
